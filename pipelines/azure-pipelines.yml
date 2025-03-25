@@ -1,0 +1,17 @@
+
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Terraform_Deploy
+    jobs:
+      - job: Apply_Terraform
+        steps:
+          - checkout: self
+          - script: |
+              terraform init
+              terraform apply -auto-approve
+            displayName: 'Terraform Apply'
